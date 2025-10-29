@@ -60,6 +60,23 @@ public class BallController : MonoBehaviour
         if (rb.linearVelocity.magnitude > maxSpeed)
             rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
     }
+
+// check for ball fell outside maze
+    void Update()
+    {
+        // ✅ Detect if ball fell off maze
+        if (transform.position.y < -5f)
+        {
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.PlayerFellIntoHole(null);
+            }
+            else
+            {
+                Debug.LogWarning("GameManager instance not found!");
+            }
+        }
+    }
 }
 
 
