@@ -5,18 +5,16 @@
 ## 🕹️ Game Features
 - Smooth gyro and keyboard controls
 - Realistic physics-based ball movement
-- Smart ghost AI that patrols and chases the player
-- Particle smoke effects and haptic feedback
+- Smart ghost that patrols and chases the player
 - Level restart and progress tracking
 
 ## 🧠 Controls
 - **Mobile:** Tilt device to move
-- **PC:** Use arrow keys or WASD
+
 
 ## 💻 Tech Stack
 - Unity 2022+
 - C# scripting
-- NavMesh AI
 - Free VFX and UI assets from Unity Asset Store
 
 <img width="279" height="571" alt="Screenshot 2025-10-30 141301" src="https://github.com/user-attachments/assets/5480b2e2-0f91-4723-b269-92c6fb09edf7" />
