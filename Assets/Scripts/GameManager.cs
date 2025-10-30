@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI livesText;
     public TextMeshProUGUI stateText;
     public TextMeshProUGUI levelCompleteText;
-    public TextMeshProUGUI levelText; // 👈 Added this for current level display
+    public TextMeshProUGUI levelText; 
     public float messageDuration = 3f;
 
     [Header("Optional Effects")]
@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         UpdateUI();
-        UpdateLevelText(); // 👈 Call to show current level at start
+        UpdateLevelText(); 
     }
 
     void UpdateUI()
@@ -108,21 +108,23 @@ public class GameManager : MonoBehaviour
     }
 
     IEnumerator LoadNextLevelAfterDelay(float delay)
+{
+    yield return new WaitForSeconds(delay);
+
+    int currentIndex = SceneManager.GetActiveScene().buildIndex;
+    int nextIndex = currentIndex + 1;
+
+    // If there is another level, load it
+    if (nextIndex < SceneManager.sceneCountInBuildSettings - 1)
     {
-        yield return new WaitForSeconds(delay);
-
-        int currentIndex = SceneManager.GetActiveScene().buildIndex;
-        int nextIndex = currentIndex + 1;
-
-        if (nextIndex < SceneManager.sceneCountInBuildSettings)
-        {
-            SceneManager.LoadScene(nextIndex);
-        }
-        else
-        {
-            stateText.text = "All Levels Completed!";
-        }
+        SceneManager.LoadScene(nextIndex);
     }
+    else
+    {
+        // Last level completed → Load "AllLevelsCompleted" scene
+        SceneManager.LoadScene("Completion");
+    }
+}
 
     public void PlayerHitByGhost()
     {
