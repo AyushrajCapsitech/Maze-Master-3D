@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
         if (audioSource && fallSound)
             audioSource.PlayOneShot(fallSound);
 
-        StartCoroutine(RespawnRoutine(holeRespawn));
+        StartCoroutine(RespawnRoutine(null));
     }
 
     IEnumerator RespawnRoutine(Transform holeRespawn)
@@ -84,6 +84,9 @@ public class GameManager : MonoBehaviour
         else
         {
             Vector3 targetPos = (holeRespawn != null) ? holeRespawn.position + Vector3.up * 0.5f : spawnPoint.position;
+
+        // ✅ Actually move the player here
+            player.position = targetPos;
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
             rb.isKinematic = false;
